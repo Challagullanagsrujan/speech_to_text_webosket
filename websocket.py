@@ -12,14 +12,25 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 
 from google.cloud import speech
-import dotenv
+from dotenv import load_dotenv
 
 from connection import register_connection, unregister_connection, get_connection_state, ConnectionState
 
 # Load environment variables
-dotenv.load_dotenv()
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-os.environ["Project_ID"] = os.getenv("Project_ID")
+load_dotenv()
+
+
+GOOGLE_APPLICATION_CREDENTIALS = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+if GOOGLE_APPLICATION_CREDENTIALS is not None:
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = GOOGLE_APPLICATION_CREDENTIALS
+else:
+    print("Warning: GOOGLE_APPLICATION_CREDENTIALS environment variable not set.")
+
+Project_ID = os.getenv("Project_ID")
+if Project_ID is not None:
+    os.environ["Project_ID"] = Project_ID
+else:
+    print("Warning: Project_ID environment variable not set.")
 
 # Audio parameters
 RATE = 16000
