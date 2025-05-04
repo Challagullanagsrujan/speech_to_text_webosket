@@ -1,0 +1,33 @@
+# Git files
+.git/
+.gitignore
+
+# Docker files
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Python cache and virtual environment
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Credentials - IMPORTANT: Avoid copying sensitive files into the image
+/speech-demo-457206-00bcd6d7ba51.json
+# If your GOOGLE_APPLICATION_CREDENTIALS file is in this directory, add its name:
+# your-gcp-credentials-file.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
