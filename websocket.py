@@ -26,9 +26,9 @@ if GOOGLE_APPLICATION_CREDENTIALS is not None:
 else:
     print("Warning: GOOGLE_APPLICATION_CREDENTIALS environment variable not set.")
 
-Project_ID = os.getenv("Project_ID")
+Project_ID = os.getenv("PROJECT_ID")
 if Project_ID is not None:
-    os.environ["Project_ID"] = Project_ID
+    os.environ["PROJECT_ID"] = Project_ID
 else:
     print("Warning: Project_ID environment variable not set.")
 
