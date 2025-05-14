@@ -14,7 +14,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from google.cloud import speech
 from dotenv import load_dotenv
 
-from connection import register_connection, unregister_connection, get_connection_state, ConnectionState
+from app.connections.connection import register_connection, unregister_connection, get_connection_state, ConnectionState
 
 # Load environment variables
 load_dotenv()

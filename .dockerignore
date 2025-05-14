@@ -19,6 +19,9 @@ env/
 *.egg-info/
 dist/
 build/
+# for my reference
+\app\wholecode
+
 
 # Credentials - IMPORTANT: Avoid copying sensitive files into the image
 /speech-demo-457206-00bcd6d7ba51.json
