@@ -14,11 +14,12 @@ def Settings():
     load_dotenv()
 
     # Configure Google Cloud credentials
-    GOOGLE_APPLICATION_CREDENTIALS = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-    if GOOGLE_APPLICATION_CREDENTIALS is not None:
-        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = GOOGLE_APPLICATION_CREDENTIALS
+    GOOGLE_SPEECH_API_KEY = os.getenv("GOOGLE_SPEECH_API_KEY")
+    if GOOGLE_SPEECH_API_KEY is not None:
+        os.environ["GOOGLE_SPEECH_API_KEY"] = GOOGLE_SPEECH_API_KEY
+        logger.info("GOOGLE_SPEECH_API_KEY environment variable set.")
     else:
-        logger.warning("GOOGLE_APPLICATION_CREDENTIALS environment variable not set.")
+        logger.warning("GOOGLE_SPEECH_API_KEY environment variable not set.")
 
     # Configure Project ID
     PROJECT_ID = os.getenv("PROJECT_ID")
@@ -38,7 +39,7 @@ def get_audio_config():
     }
 
 def get_speech_recognition_config(language_code="en-IN"):
-    """Get Google Speech-to-Text configuration."""
+    """Get Google Speech-to-Text configuration with speaker diarization."""
     from google.cloud import speech
     
     config = speech.RecognitionConfig(
@@ -46,6 +47,8 @@ def get_speech_recognition_config(language_code="en-IN"):
         sample_rate_hertz=RATE,
         language_code=language_code,
         enable_automatic_punctuation=True,
+        enable_speaker_diarization=True,
+        diarization_speaker_count=2,  # Adjust this number based on expected speakers
     )
     
     streaming_config = speech.StreamingRecognitionConfig(

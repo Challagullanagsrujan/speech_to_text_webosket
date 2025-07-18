@@ -5,8 +5,8 @@ from app.repositories.stream_repository import WebSocketStream
 from app.Config.config import Settings
 import os
 
-print(f"Google Credentials (WebSocket): {Settings.GOOGLE_APPLICATION_CREDENTIALS}")
-print(f"Environment Variable (OS): {os.getenv('GOOGLE_APPLICATION_CREDENTIALS')}")
+print(f"Google API Key (WebSocket): {Settings.GOOGLE_SPEECH_API_KEY}")
+print(f"Environment Variable (OS): {os.getenv('GOOGLE_SPEECH_API_KEY')}")
 
 async def receive_audio(websocket: WebSocket, stream: WebSocketStream):
     try:

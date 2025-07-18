@@ -22,12 +22,6 @@ build/
 # for my reference
 \app\wholecode
 
-
-# Credentials - IMPORTANT: Avoid copying sensitive files into the image
-/speech-demo-457206-00bcd6d7ba51.json
-# If your GOOGLE_APPLICATION_CREDENTIALS file is in this directory, add its name:
-# your-gcp-credentials-file.json
-
 # OS files
 .DS_Store
 Thumbs.db

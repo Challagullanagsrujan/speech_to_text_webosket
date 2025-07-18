@@ -1,5 +1,3 @@
-
-
 services:
   websocket_app:
     # Build the image using the Dockerfile in the current directory (.)
@@ -8,47 +6,10 @@ services:
       dockerfile: Dockerfile
     # Name the container for easier identification
     container_name: speech_websocket_service
-    # Map port 8000 on the host machine to port 8000 inside the container
     ports:
       - "8000:8000"
-    # Load environment variables from the .env file in the current directory
-    # This file should contain Project_ID and GOOGLE_APPLICATION_CREDENTIALS
     env_file:
       - .env
-    # Mount volumes for persistent data or configuration
     volumes:
-      # Mount the Google Cloud credentials file from the host (project directory)
-      # into the /app directory inside the container.
-      # The container path MUST match the GOOGLE_APPLICATION_CREDENTIALS value in your .env file.
-      # ':ro' makes the mounted file read-only inside the container for security.
-      - ./speech-demo-457206-00bcd6d7ba51.json:/app/speech-demo-457206-00bcd6d7ba51.json:ro
-
-      # --- Optional: Mount code for development hot-reloading ---
-      # If you enable the --reload flag in the Dockerfile's CMD, uncommenting
-      # these lines will reflect code changes immediately without rebuilding.
-      # Note: This is generally NOT recommended for production images.
-      # - ./websocket.py:/app/websocket.py
-      # - ./connection.py:/app/connection.py
-      # ----------------------------------------------------------
-
-    # --- Optional: Restart Policy ---
-    # Define what Docker should do if the container stops.
-    # 'unless-stopped': Restarts the container unless it was explicitly stopped.
-    # 'always': Always restarts the container if it stops.
-    # 'on-failure': Restarts only if the container exits with a non-zero exit code.
-    # restart: unless-stopped
-    # ---------------------------------
-
-    # --- Optional: Network Configuration ---
-    # If your application needs to communicate with other containers defined
-    # in this file, you might define and assign networks.
-    # networks:
-    #   - my_app_network
-    # ------------------------------------
-
-# --- Optional: Define Networks ---
-# If you uncommented the 'networks:' section above, define the network here.
-# networks:
-#   my_app_network:
-#     driver: bridge # Default network driver
-# ---------------------------------
+      - ./app:/app/app 
+    restart: unless-stopped
